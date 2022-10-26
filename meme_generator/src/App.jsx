@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Meme from './components/Meme'
+import memesData from './memesData'
 import './App.css'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Navbar />
@@ -11,5 +12,3 @@ function App() {
     </div>
   )
 }
-
-export default App
