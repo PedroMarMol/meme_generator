@@ -1,16 +1,12 @@
 import React from "react";
 import memesData from "../memesData";
 
-export default function Meme(props) {
-    const memesArray = memesData.data.memes
-    function getRandomProperty(obj) {
-        const keys = Object.keys(obj)
-        return keys[Math.floor(Math.random() * keys.length)]
-    }
+export default function Meme() {
+    const [memeImage, setMemeImage] = React.useState("");
     function getMemeImage() {
-        const memeSelector = (memesArray[getRandomProperty(memesArray)])
-        const url = memeSelector.url
-        console.log(url)
+        const memesArray = memesData.data.memes
+        const randomMeme = Math.floor(Math.random() * memesArray.length)
+        setMemeImage(memesArray[randomMeme].url)
     }
     return (
         <main>
@@ -20,6 +16,7 @@ export default function Meme(props) {
                     <input></input>
                 </div>
                 <button onClick={getMemeImage} className="form--button">Get a new meme image 🖼</button>
+                <img className="form--image" src={memeImage}/>
             </div>
         </main>
     )
