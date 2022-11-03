@@ -1,5 +1,4 @@
 import React from "react";
-import memesData from "../memesData";
 
 export default function Meme() {
     const [meme, setMeme] = React.useState({
@@ -8,7 +7,14 @@ export default function Meme() {
         randomImage: "http://i.imgflip.com/1bij.jpg"
     })
 
-    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+    React.useEffect(() => {
+        console.log("Effect ran")
+        fetch(`https://api.imgflip.com/${meme}`)
+            .then(res => res.json())
+            .then(data => setAllMemeImages.randomImage(data.data.memes))
+    }, [])
+
+    const [allMemeImages, setAllMemeImages] = React.useState([])
     
     function getMemeImage() {
         const memesArray = memesData.data.memes
